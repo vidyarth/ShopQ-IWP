@@ -1,0 +1,61 @@
+{{!-- <h1>Customer</h1>
+<p>Welcome {{name}}</p>
+
+{{#if shops}}
+{{#each shops}}
+    <div>
+        <h1><a href="/shop/{{_id}}/view_items">{{shopName}}</a></h1>
+    </div>
+{{/each}}
+{{else}}
+    <div>
+        Nothing to show
+    </div>
+{{/if}} --}}
+
+
+<div class="welcome-flex">
+    <div class="welcome-left">
+        <h2>Hello <span class="welcome">{{name}}</span> !</h2>
+        <h5>Shops for you to shop,</h5>
+    </div>
+    <div class="welcome-right">
+        <a href="/order/cust-orders" class="btn btn-primary">My orders</a>
+    </div>
+</div>
+
+
+
+
+<br>
+{{#if shops}}
+{{#each shops}}
+    <div class="flex">
+    <div class="shopkeeper-shops" style="padding-bottom:20px">
+        <div class="card" style="width: 18rem; border-left: 6px solid red;">
+            <div class="card-body">
+                <h5 class="card-title" style="color:black;font-weight:bold;font-size:25px">{{shopName}} </h5>
+                <p class="card-text" style="color:black;font-size:12px">Shop is owned by <span class="welcome">{{owner.displayName}}</span></p>
+
+                <a href="/shop/{{_id}}/view_items" class="btn btn-dark">Order items</a>
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+    
+{{/each}}
+{{else}}
+    <div>
+        Nothing to show
+    </div>
+{{/if}}
+<br>
+<br>
+
+{{!-- <a href="/shop/add">
+    <button type="button" class="btn btn-primary btn-lg">Large button</button>
+</a> --}}

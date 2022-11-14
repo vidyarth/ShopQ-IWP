@@ -1,0 +1,49 @@
+<div class="welcome-flex">
+    <div class="welcome-left">
+        <h2>Welcome to <span class="welcome">{{shop.shopName}}</span> !</h2>
+        <h5>
+            <button type="button" class="btn btn-dark btn-sm" style="font-weight:bold">
+                <i class="fa-solid fa-phone"></i> &nbsp; &nbsp; {{shop.shopPhone}}</button>
+            <a href="/shop/{{shop._id}}/qr_gen">
+             <button type="button" class="btn btn-danger btn-sm"  style="font-weight:bold;">
+                <i class="fa-sharp fa-solid fa-qrcode"></i> &nbsp;Generate Qr code</button></a>
+                </h5>
+    </div>
+    <div class="welcome-right">
+
+        <a href="/shop/{{shop._id}}/add_items">
+            <button type="button" class="btn btn-danger btn-lg" style="background-color: #e51e2a">Add items</button>
+        </a>
+    </div>
+</div>
+
+<br>
+
+{{#if shop.items}}
+{{#each shop.items}}
+    <div class="flex">
+    <div class="shopkeeper-shops" style="padding-bottom:20px">
+        <div class="card" style="width: 18rem; border-left: 6px solid red;">
+            <div class="card-body">
+                <h5 class="card-title" style="color:black;font-weight:bold;font-size:25px">{{itemName}}</h5>
+                <br>
+                <button type="button" class="btn btn-dark" style="font-weight:bold;"><i class="fa-sharp fa-solid fa-indian-rupee-sign"></i> &nbsp;{{itemPrice}}</button>
+                <button type="button" class="btn btn-warning" style="font-weight:bold;">Available : {{itemQuantity}}</button>
+                <a href="/shop/{{../shop._id}}/edit/{{_id}}" class="btn btn-primary item-edit"><i class="fa-sharp fa-solid fa-pen-to-square"></i></a>
+                <form action="/shop/{{../shop._id}}/delete/{{_id}}" method="post" class="shop-del">
+                    <input type="hidden" name="_method" value="delete">
+                    <button type="submit" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+{{/each}}
+{{else}}
+    <div>
+        <h1 class="welcome">Oops! Nothing to show</h1>
+    </div>
+{{/if}}

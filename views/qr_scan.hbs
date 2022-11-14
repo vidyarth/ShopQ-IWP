@@ -1,0 +1,64 @@
+    <style>
+        a{
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        #qr-reader__status_span{
+            display:None;
+        }
+        #qr-reader{
+            border:rgba(219, 219, 219, 0.708) !important;   
+            outline:rgba(219, 219, 219, 0.453) !important;  
+                 
+        }
+        .main{
+            position: absolute;
+            left: 100px;
+            top:150px;   
+        }
+
+        button{
+            margin-top:20px;
+            background-color:#e51e2a;
+            padding: 6px;
+            padding-left:10px;
+            padding-right:10px;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+        #qr-reader__dashboard_section_swaplink{
+            display: none;
+        }
+        #qr-reader__camera_selection{
+            color: black;
+        }
+        a:hover{
+            color:white;
+            cursor:default;
+        }
+        a{
+            margin-left: 30%;
+        }
+        hr{
+            padding-top:20px;
+        }
+    </style>   
+    
+    <script src="./js/qrcode.min.js"></script>
+    <div class="main" style="display: flex;justify-content: center;">
+        <div id="qr-reader" style="width: 500px;align-self:left">
+
+        </div>
+    </div>
+    <script>
+      function onScanSuccess(decodedText, decodedResult) {
+        console.log(`Code scanned = ${decodedText}`, decodedResult);
+        window.location.replace("http://localhost:3000/shop/"+decodedText+"/view_items");
+      }
+      var html5QrcodeScanner = new Html5QrcodeScanner("qr-reader", {
+        fps: 10,
+        qrbox: 250,
+      });
+      html5QrcodeScanner.render(onScanSuccess);
+    </script>

@@ -1,0 +1,64 @@
+<div class="welcome-flex">
+    <div class="welcome-left">
+        <h2>Hello <span class="welcome">{{name}}</span> !</h2>
+        <h5>Here are your orders !</h5>
+    </div>
+</div>
+
+
+{{#if orders}}
+    {{#each orders}}
+    {{#unless delivered}}
+        <div class="flex">
+            <div class="shopkeeper-shops" style="padding-bottom:20px">
+                <div class="card" style="width: 18rem; border-left: 6px solid red;">
+                    <div class="card-body">
+                        <h5 class="card-title" style="color:black;font-weight:bold;font-size:25px">{{shopId.shopName}} 
+                            <a href="/order/{{_id}}/view" style="margin-left:20px" class="btn btn-dark btn-sm">View</a>
+                        </h5>
+                        <p class="card-text" style="color:black;font-size:12px"><span class="welcome" style="font-weight:bold">Details :  <span class="welcome">{{date}} - {{time}}</span></span></p>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    {{/unless}}
+    {{/each}}
+{{else}}
+    <div>
+        Nothing to show
+    </div>
+{{/if}}
+
+<br>
+<div class="welcome-flex">
+    <div class="welcome-left">
+        <h2 style="color: white">Order History !</h2>
+    </div>
+</div>
+
+{{#if orders}}
+    {{#each orders}}
+    {{#if delivered}}
+        <div class="flex">
+            <div class="shopkeeper-shops" style="padding-bottom:20px">
+                <div class="card" style="width: 18rem; border-left: 6px solid green;">
+                    <div class="card-body">
+                        <h5 class="card-title" style="color:black;font-weight:bold;font-size:25px">{{shopId.shopName}} 
+                            <a href="/order/{{_id}}/view" style="margin-left:20px" class="btn btn-success btn-sm">View</a>
+                        </h5>
+                        <p class="card-text" style="color:black;font-size:12px"><span class="welcome" style="font-weight:bold; ">Details :  <span class="welcome" style="color:green">{{date}} - {{time}}</span></span></p>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    {{/if}}
+    {{/each}}
+{{else}}
+    <div>
+        Nothing to show
+    </div>
+{{/if}}
+<br>
+<br>

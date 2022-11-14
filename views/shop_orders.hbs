@@ -1,0 +1,75 @@
+
+<br>
+<br>
+<div class="welcome-flex">
+    <div class="welcome-left">
+        <h2 style="color: white">Hello <span class="welcome" style="color: red;font-weight:bold">{{name}}</span> !</h2>
+        <h5 style="color: white">Here are your orders !</h5>
+    </div>
+</div>
+
+<br>
+<link rel="stylesheet" href="./css/styles.css">
+<style>
+    .flex{
+    display:inline-block;
+    padding-right: 20px;
+    padding-bottom: 10px;
+}
+
+</style>
+{{#if order}}
+{{#each order}}
+    {{#unless delivered}}
+    <div class="flex">
+        <div class="shopkeeper-shops" style="padding-bottom:20px">
+            <div class="card" style="width: 18rem; border-left: 6px solid red;">
+                <div class="card-body">
+                    <h5 class="card-title" style="color:black;font-weight:bold;font-size:25px">{{customerId.displayName}} &nbsp; &nbsp; &nbsp; &nbsp;<a href="/order/{{_id}}/alert">
+                        <i class="fa-solid fa-bell" style="color: orange"></i>
+                    </a></h5>
+                    <p class="card-text" style="color:black;font-size:12px"><span class="welcome" style="font-weight:bold">Details :  <span class="welcome">{{date}} - {{time}}</span></span></p>
+                    <a href="/order/{{_id}}/deliver" class="btn btn-primary btn">Deliver</a>
+                    <a href="/order/{{_id}}/view" style="margin-left:10px" class="btn btn-dark">View</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{/unless}}
+{{/each}}
+{{else}}
+    <div>
+        Nothing to show
+    </div>
+{{/if}}
+
+<div class="welcome-flex">
+    <div class="welcome-left">
+        <h2 style="color: white">Delivered orders !</h2>
+    </div>
+</div>
+<br>
+{{#if order}}
+{{#each order}}
+    {{#if delivered}}
+    <div class="flex">
+        <div class="shopkeeper-shops" style="padding-bottom:20px">
+            <div class="card" style="width: 18rem; border-left: 6px solid green;">
+                <div class="card-body">
+                    <h5 class="card-title" style="color:black;font-weight:bold;font-size:25px">{{customerId.displayName}} </h5>
+                    <p class="card-text" style="color:black;font-size:12px"><span class="welcome" style="font-weight:bold">Details :  <span class="welcome">{{date}} - {{time}}</span></span></p>
+                    <a href="#" class="btn btn-success">
+                        <i class="fa-solid fa-circle-check"></i>&nbsp; Delivered</a>
+                    <a href="/order/{{_id}}/view" style="margin-left:10px" class="btn btn-dark">View</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{/if}}
+
+{{/each}}
+{{else}}
+    <div>
+        Nothing to show
+    </div>
+{{/if}}

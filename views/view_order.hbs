@@ -1,0 +1,123 @@
+<style>
+    *{
+    color: white;
+}
+.login-main{
+    margin-top: 100px;
+    width: 60%;
+    margin-left: 20%;
+}
+.content-main{
+    margin-top: 50px;
+    width: 80%;
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+.left{
+    padding-right: 10px;
+}
+
+.logout{
+    position: absolute;
+    background-color: red;
+    padding: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius:5px;
+    top: 10px;
+    right: 30px;
+    
+}
+
+.welcome{
+    color: red;
+    font-weight: bold;
+}
+.flex{
+    display:inline-block;
+    padding-right: 20px;
+    padding-bottom: 10px;
+}
+
+.welcome-flex{
+    display: flex;
+    justify-content: space-between;
+    width: 60%;
+}
+.bill-flex{
+    display: flex;
+    justify-content: space-between;
+}
+
+.welcome-right{
+    margin-top: 10px;
+}
+
+.total-amount{
+    text-align: right;
+    margin-right: 158px;
+    font-weight: bold;
+}
+
+.shop-del{
+    position: absolute;
+    top: 15px;
+    right: 10px;
+}
+
+.item-edit{
+    position: absolute;
+    top: 15px;
+    right: 60px;
+}
+.order-container{
+    position: absolute;
+    top:25%;
+    left: 8%;
+    width:650px;
+}
+</style>
+<div class="order-container">
+    <div class="bill-flex">
+    <div style="">
+        <img src="https://www.iconpacks.net/icons/2/free-store-icon-2017-thumb.png" height="70px" weight="70px" alt="">
+    </div>
+    <div class="">
+        <h1 class="welcome text-center">{{order.shopId.shopName}}</h1>
+        <small style="font-weight:500; font-size: small; color: rgb(242, 242, 242)">order id : {{order._id}}</small>
+    </div>
+    <div >
+        <h6 style="font-weight:bold">Phone : {{order.shopId.shopPhone}}</h6>
+        <h6 style="font-weight:bold">Customer : {{name}}</h6>
+        {{!-- <p>Invoice id : {{order._id}}</p> --}}
+    </div>
+</div>
+<hr>
+<span><h4 class="welcome">Items ordered  </h4></span>
+<div>
+    <table class="table">
+        <thead>
+            <tr class="table-dark">
+            <th scope="col">Name</th>
+            <th scope="col">Price</th>
+            <th scope="col">Quantity</th>
+            <th scope="col">Total</th>
+            </tr>
+        </thead>
+          <tbody>
+            {{#each itemsInOrder}}
+                <tr>
+                    <td>{{itemName}}</td>
+                    <td>Rs. {{itemPrice}}</td>
+                    <td>{{itemQuantity}}</td>
+                    <td>Rs. {{total}}</td>
+                </tr>
+            {{/each}}
+            </tbody>
+        </table>
+        <div class="total-amount">
+            The order total is : <span class="welcome"> Rs. {{order_total}}</span>
+        </div>  
+</div>
+</div>

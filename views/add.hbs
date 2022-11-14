@@ -1,0 +1,24 @@
+<div class="welcome-flex">
+    <div class="welcome-left">
+        <h2>Hello <span class="welcome">{{name}}</span> !</h2>
+        <h5>Add your new shop here,</h5>
+    </div>
+</div>
+
+<br>
+<br>
+
+<div class="add-form">
+    <form action="/shop/ok" method="post">
+        <div class="mb-3">
+            <label for="shopname" class="form-label">Shop Name</label>
+            <input type="text" class="form-control" id="shopname" name="shopName" placeholder="Enter the shop name" style="width:500px">
+        </div>
+        <div class="mb-3">
+            <label for="shopphone" class="form-label">Shop Phone</label>
+            <input type="tel" oninvalid="this.setCustomValidity('Enter a correct Indian phone number')" pattern="[0-9]{10}"  class="form-control" id="shopphone" name="shopPhone" placeholder="Enter the shop phone" style="width:500px">
+        </div>
+        <button type="submit" class="btn btn-primary">Add shop</button>
+    </form>
+</div>
+

@@ -1,0 +1,72 @@
+*{
+    color: white;
+}
+.login-main{
+    margin-top: 100px;
+    width: 60%;
+    margin-left: 20%;
+}
+.content-main{
+    margin-top: 50px;
+    width: 80%;
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+.left{
+    padding-right: 10px;
+}
+
+.logout{
+    position: absolute;
+    background-color: red;
+    padding: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius:5px;
+    top: 10px;
+    right: 30px;
+    
+}
+
+.welcome{
+    color: red;
+    font-weight: bold;
+}
+.flex{
+    display:inline-block;
+    padding-right: 20px;
+    padding-bottom: 10px;
+}
+
+.welcome-flex{
+    display: flex;
+    justify-content: space-between;
+    width: 60%;
+}
+.bill-flex{
+    display: flex;
+    justify-content: space-between;
+}
+
+.welcome-right{
+    margin-top: 10px;
+}
+
+.total-amount{
+    text-align: right;
+    margin-right: 158px;
+    font-weight: bold;
+}
+
+.shop-del{
+    position: absolute;
+    top: 15px;
+    right: 10px;
+}
+
+.item-edit{
+    position: absolute;
+    top: 15px;
+    right: 60px;
+}

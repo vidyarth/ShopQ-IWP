@@ -1,0 +1,55 @@
+<div class="welcome-flex">
+    <div class="welcome-left">
+        <h2>Hello <span class="welcome">{{name}}</span> !</h2>
+        <h5>Shops owned by you,</h5>
+    </div>
+    <div class="welcome-right">
+        <a href="/shop/add">
+            <button type="button" class="btn btn-danger btn-lg" style="background-color:#e51e2a">Add shop</button>
+        </a>
+    </div>
+</div>
+
+
+
+
+<br>
+{{#if shops}}
+{{#each shops}}
+{{!-- <div>
+    <h1><a href="/shop/{{_id}}">{{shopName}}</a></h1>
+</div> --}}
+<div class="flex">
+    <div class="shopkeeper-shops" style="padding-bottom:20px">
+        <div class="card" style="width: 18rem; border-left: 6px solid red;">
+            <div class="card-body">
+                <h5 class="card-title" style="color:black;font-weight:bold;font-size:25px">{{shopName}} </h5>
+                <p class="card-text" style="color:black;font-size:12px">Shop is owned by <span class="welcome">{{owner.displayName}}</span></p>
+
+                <a href="/shop/{{_id}}/orders" class="btn btn-primary">View Orders</a>
+                <a href="/shop/{{_id}}" style="margin-left:50px" class="btn btn-dark">Explore</a>
+                <form action="/shop/{{_id}}/delete" method="post" class="shop-del">
+                    <input type="hidden" name="_method" value="delete">
+                    <button type="submit" class="btn btn-danger">
+                        <i class="fa fa-trash" aria-hidden="true"></i>
+                    </button>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{{/each}}
+{{else}}
+<div>
+    Nothing to show
+</div>
+{{/if}}
+<br>
+<br>
+
+{{!-- <a href="/shop/add">
+    <button type="button" class="btn btn-primary btn-lg">Large button</button>
+</a> --}}

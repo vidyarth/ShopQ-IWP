@@ -1,0 +1,210 @@
+<style>
+    *{
+    color: white;
+}
+.login-main{
+    margin-top: 100px;
+    width: 60%;
+    margin-left: 20%;
+}
+.content-main{
+    margin-top: 50px;
+    width: 80%;
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+.left{
+    padding-right: 10px;
+}
+
+.logout{
+    position: absolute;
+    background-color: red;
+    padding: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius:5px;
+    top: 10px;
+    right: 30px;
+    
+}
+
+.welcome{
+    color: red;
+    font-weight: bold;
+}
+.flex{
+    display:inline-block;
+    padding-right: 20px;
+    padding-bottom: 10px;
+}
+
+.welcome-flex{
+    display: flex;
+    justify-content: space-between;
+    width: 60%;
+}
+.bill-flex{
+    display: flex;
+    justify-content: space-between;
+}
+
+.welcome-right{
+    margin-top: 10px;
+}
+
+.total-amount{
+    text-align: right;
+    margin-right: 158px;
+    font-weight: bold;
+}
+
+.shop-del{
+    position: absolute;
+    top: 15px;
+    right: 10px;
+}
+
+.item-edit{
+    position: absolute;
+    top: 15px;
+    right: 60px;
+}
+
+.place-order{
+    position: absolute;
+    top: 35%;
+    right: 45%;
+}
+       .btn-circle.btn-sm {
+            width: 30px;
+            height: 30px;
+            padding: 6px 0px;
+            border-radius: 15px;
+            font-size: 8px;
+            text-align: center;
+        }
+        .btn-circle.btn-md {
+            width: 50px;
+            height: 50px;
+            padding: 7px 10px;
+            border-radius: 25px;
+            font-size: 10px;
+            text-align: center;
+        }
+        .btn-circle.btn-xl {
+            width: 70px;
+            height: 70px;
+            padding: 10px 16px;
+            border-radius: 35px;
+            font-size: 12px;
+            text-align: center;
+        }
+
+</style>
+
+<style>
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+</style>
+
+
+
+<div class="welcome-flex">
+    <div class="welcome-left">
+        <h2>Welcome to <span class="welcome">{{shop.shopName}}</span> !</h2>
+        <h5>
+            <button type="button" class="btn btn-dark btn-sm" style="font-weight:bold">
+                <i class="fa-solid fa-phone"></i> &nbsp; &nbsp; {{shop.shopPhone}}</button></h5>
+    </div>
+</div>
+
+
+<br>
+
+{{#if shop.items}}
+<form action="/order/{{shop._id}}/ok" method="post">
+    {{#each shop.items}}
+
+        {{#if itemQuantity}}
+        <div class="flex">
+        {{/if}}
+        {{#unless itemQuantity}}
+        <div class="flex" style="display:none">
+        {{/unless}}
+            <div class="shopkeeper-shops" style="padding-bottom:20px">
+                <div class="card" style="width: 18rem; border-left: 6px solid red;">
+                    <div class="card-body">
+                        <h5 class="card-title" style="color:black;font-weight:bold;font-size:25px">{{itemName}}</h5>
+                        <button type="button" class="btn btn-dark" style="font-weight:bold;"><i class="fa-sharp fa-solid fa-indian-rupee-sign"></i> &nbsp;{{itemPrice}}</button>
+                        <button type="button" class="btn btn-warning" style="font-weight:bold;">Available : {{itemQuantity}}</button>
+                        <input type="hidden" name="itemId" value="{{_id}}">
+                        <br>
+                        <br>
+                        <button type="button" class="btn btn-danger btn-circle btn-sm" data-quantity="minus" data-field="{{_id}}">
+                            <i class="fa-solid fa-minus fa-2x"></i>
+                        </button>
+                        <input style="color:black;text-align: center;border:none"type="number" name="itemQuantity" id="{{_id}}" readonly value="0" min="0" max="{{itemQuantity}}">
+                        <button type="button" class="btn btn-danger btn-circle btn-sm" data-quantity="plus" data-field="{{_id}}">
+                            <i class="fa-solid fa-plus fa-2x"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+
+    {{/each}}
+    <button type="submit" class="btn btn-danger btn-sml place-order">Place Order</button>
+</form>
+{{else}}
+    <div>
+        <h1 class="welcome">Oops! Nothing to show</h1>
+    </div>
+{{/if}}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script>
+    jQuery(document).ready(function(){
+    // This button will increment the value
+    $('[data-quantity="plus"]').click(function(e){
+        // Stop acting like a button
+        e.preventDefault();
+        // Get the field name
+        fieldName = $(this).attr('data-field');
+        // Get its current value
+        var currentVal = parseInt($('input[id='+fieldName+']').val());
+        // If is not undefined
+        let lim = document.getElementById(fieldName).max;
+        console.log(lim);
+        if (!isNaN(currentVal) && currentVal < lim) {
+            // Increment
+            $('input[id='+fieldName+']').val(currentVal + 1);
+        } else {
+            // Otherwise put a 0 there
+        }
+    });
+    // This button will decrement the value till 0
+    $('[data-quantity="minus"]').click(function(e) {
+        // Stop acting like a button
+        e.preventDefault();
+        // Get the field name
+        fieldName = $(this).attr('data-field');
+        // Get its current value
+        var currentVal = parseInt($('input[id='+fieldName+']').val());
+        // If it isn't undefined or its greater than 0
+        if (!isNaN(currentVal) && currentVal > 0) {
+            // Decrement one
+            $('input[id='+fieldName+']').val(currentVal - 1);
+        } else {
+            // Otherwise put a 0 there
+            $('input[id='+fieldName+']').val(0);
+        }
+    });
+});
+
+
+</script>
